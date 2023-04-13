@@ -8,6 +8,16 @@ import (
 )
 
 func main() {
+	//cl := client.New("http://localhost:3000")
+	//
+	//price, err := cl.FetchPrice(context.Background(), "BTC")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//fmt.Printf("%+v\n", price)
+	//return
+
 	listenAddr := flag.String("listenaddr", ":3000", "listen address for service")
 	flag.Parse()
 
