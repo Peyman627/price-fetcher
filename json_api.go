@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/Peyman627/price-fetcher/types"
 	"math/rand"
 	"net/http"
@@ -36,7 +37,10 @@ func makeHTTPHandlerFunc(APIFn APIFunc) http.HandlerFunc {
 
 func (s *JSONAPIServer) Run() {
 	http.HandleFunc("/", makeHTTPHandlerFunc(s.handleFetchPrice))
-	http.ListenAndServe(s.listenAddr, nil)
+	err := http.ListenAndServe(s.listenAddr, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func (s *JSONAPIServer) handleFetchPrice(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
